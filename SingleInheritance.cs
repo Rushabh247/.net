@@ -1,6 +1,6 @@
 using System;
 
-// Base class
+
 class Person
 {
     public string Name;
@@ -12,7 +12,7 @@ class Person
     }
 }
 
-// Derived class
+
 class Student : Person
 {
     public int RollNumber;
@@ -24,7 +24,7 @@ class Student : Person
     }
 }
 
-// Main Program
+
 class Program
 {
     static void Main(string[] args)
