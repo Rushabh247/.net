@@ -1,8 +1,23 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace MovieStoreApp
 {
+    public class MaximumMovieReachedException : Exception
+    {
+        public MaximumMovieReachedException(string msg) : base(msg)
+        {
+            throw new Exception(msg);
+        }
+    }
+
+    public class MovieNotFoundException : Exception
+    {
+        public MovieNotFoundException(string msg) : base(msg)
+        {
+            throw new Exception(msg);
+        }
+    }
     public class Movie
     {
         public int Id { get; set; }
@@ -15,18 +30,25 @@ namespace MovieStoreApp
             return $"ID: {Id}, Name: {Name}, Year: {YearOfRelease}, Genre: {Genre}";
         }
 
-        
+
         private static List<Movie> movieList = new List<Movie>();
         private const int MaxMovies = 5;
 
-        
+
         public static void AddMovie()
+
         {
-            if (movieList.Count >= MaxMovies)
+            try
             {
-                Console.WriteLine("Cannot add more than 5 movies.");
-                return;
-            }
+                if (movieList.Count >= MaxMovies)
+                {
+                    throw new MaximumMovieReachedException("Cannot add more than 5 movies Exception.");
+
+                }
+
+
+
+          
 
             Movie movie = new Movie();
 
@@ -44,6 +66,12 @@ namespace MovieStoreApp
 
             movieList.Add(movie);
             Console.WriteLine("Movie added successfully.");
+        }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
         }
 
         
@@ -65,35 +93,43 @@ namespace MovieStoreApp
       
         public static void FindMovieById()
         {
-            Console.Write("Enter Movie ID to search: ");
-            int id = int.Parse(Console.ReadLine());
-
-            Movie foundMovie = null;
-
-            foreach (Movie m in movieList)
+            try
             {
-                if (m.Id == id)
+                Console.Write("Enter Movie ID to search: ");
+                int id = int.Parse(Console.ReadLine());
+
+                Movie foundMovie = null;
+
+                foreach (Movie m in movieList)
                 {
-                    foundMovie = m;
-                    break;
+                    if (m.Id == id)
+                    {
+                        foundMovie = m;
+                        break;
+                    }
+                }
+
+                if (foundMovie != null)
+                {
+                    Console.WriteLine("Movie Found:");
+                    Console.WriteLine(foundMovie);
+                }
+                else
+                {
+                    throw new MovieNotFoundException("Movie not found.");
                 }
             }
-
-            if (foundMovie != null)
+            catch (Exception e)
             {
-                Console.WriteLine("Movie Found:");
-                Console.WriteLine(foundMovie);
-            }
-            else
-            {
-                Console.WriteLine("Movie not found.");
+                Console.WriteLine(e.Message);
             }
         }
 
 
-        
+
         public static void RemoveMovieById()
         {
+            try { 
             Console.Write("Enter Movie ID to remove: ");
             int id = int.Parse(Console.ReadLine());
 
@@ -115,9 +151,14 @@ namespace MovieStoreApp
             }
             else
             {
-                Console.WriteLine("Movie not found.");
+                throw new MovieNotFoundException("Movie not found.");
             }
         }
+         catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+}
 
 
         
