@@ -33,7 +33,7 @@
             human.walks();
             human.speaks();
             Console.WriteLine();
-            Console.WriteLine("Multilevel inheritance implementation");
+            Console.WriteLine("Hybrid inheritance implementation");
 
             Manager mgr = new Manager("Alice", "IT", 10);
 
