@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UniversityCourseEnrollment
 {
-    internal class Lab
+    internal class Lab : Course
     {
         public int SafetyCertificate;
         public string CourseName;
