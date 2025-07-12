@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UniversityCourseEnrollment
 {
-    internal class InPerson
+    internal class InPerson : Course
     {
         public string CourseName;
         public int RoomNo;
