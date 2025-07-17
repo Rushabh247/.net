@@ -1,0 +1,12 @@
+[
+  {
+    "AccountNumber": 1234,
+    "HolderName": "rushabh",
+    "Balance": 800
+  },
+  {
+    "AccountNumber": 5678,
+    "HolderName": "om",
+    "Balance": 200
+  }
+]
