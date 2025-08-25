@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finding Nemo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f0f8ff;
+    }
+
+    h1 {
+      margin-top: 20px;
+      color: #333;
+    }
+
+    #game-board {
+      display: grid;
+      grid-template-columns: repeat(5, 80px);
+      grid-gap: 15px;
+      justify-content: center;
+      margin: 20px auto;
+    }
+
+    .circle {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background-color: dodgerblue;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .circle:hover {
+      transform: scale(1.1);
+      background-color: deepskyblue;
+    }
+
+    .circle img {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+    }
+
+    .cross {
+      font-size: 50px;
+      color: red;
+      font-weight: bold;
+    }
+
+    #message {
+      font-size: 20px;
+      margin-top: 15px;
+      font-weight: bold;
+      color: #222;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎯 Finding Nemo</h1>
+  <p>You have 5 chances to find Nemo!</p>
+  <div id="game-board"></div>
+  <p id="message"></p>
+
+  <script>
+    const gameBoard = document.getElementById("game-board");
+    const message = document.getElementById("message");
+
+    let chances = 5;
+    let totalCircles = 10;
+
+    // Random position for Nemo
+    let nemoIndex = Math.floor(Math.random() * totalCircles);
+
+    // Create circles
+    for (let i = 0; i < totalCircles; i++) {
+      let circle = document.createElement("div");
+      circle.classList.add("circle");
+      circle.dataset.index = i;
+
+      circle.addEventListener("click", () => checkChoice(circle, i));
+      gameBoard.appendChild(circle);
+    }
+
+    function checkChoice(circle, index) {
+      if (chances <= 0 || circle.innerHTML !== "") return; // prevent extra clicks
+
+      if (index == nemoIndex) {
+        circle.innerHTML = `<img src="https://vignette.wikia.nocookie.net/pixar/images/3/39/59.png/revision/latest?cb=20170511011455" alt="Nemo">`;
+        message.textContent = "🎉 Congratulations, You Found Nemo!";
+      } else {
+        circle.innerHTML = `<span class="cross">X</span>`;
+        chances--;
+        if (chances > 0) {
+          message.textContent = `❌ Wrong! Chances left: ${chances}`;
+        } else {
+          message.textContent = "💀 Game Over! Nemo escaped.";
+        }
+      }
+    }
+  </script>
+</body>
+</html>

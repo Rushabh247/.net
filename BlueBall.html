@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Number Guess Game 🎯</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #f0f9ff;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    .instructions-box {
+      border: 6px dashed green;
+      background: #f8f8d4;
+      padding: 24px;
+      border-radius: 14px;
+      max-width: 570px;
+      margin: 10px auto;
+    }
+
+    #numberDisplay {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 20px 0;
+    }
+
+    #numberDisplay .number-ball {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 4px;
+      font-weight: bold;
+      font-size: 1.3rem;
+      color: black;
+      background: #99f0ff;
+      border: 2px solid #87d0e1;
+      transition: background .3s, color .3s, border .3s;
+    }
+
+    .number-ball.yellow {
+      background: yellow !important;
+      color: #555 !important;
+    }
+
+    .number-ball.red {
+      background: #f85050 !important;
+      color: #fff !important;
+    }
+
+    .number-ball.green {
+      background: #20cd60 !important;
+      color: #fff !important;
+    }
+
+    #attemptDisplay, #resultDisplay {
+      margin-top: 15px;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    input[type="range"] {
+      width: 300px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎯 Number Guess Game</h1>
+  <div class="instructions-box">
+    <p>Guess the number between <strong>1 - 10</strong>.</p>
+    <p>You have <strong>6 chances</strong>. Slider shows your guess.</p>
+  </div>
+
+  <div id="numberDisplay"></div>
+
+  <input type="range" id="guessSlider" min="1" max="10" value="1">
+  <p id="attemptDisplay">Attempt No. 0</p>
+  <p id="resultDisplay"></p>
+
+  <script>
+    const MAX_ATTEMPTS = 6;
+    const min = 1, max = 10;
+    const correctNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+    
+    let attempts = 0;
+    let gameOver = false;
+    let ballStatuses = {}; // Track ball states
+    
+    const guessSlider = document.getElementById('guessSlider');
+    const numberDisplay = document.getElementById('numberDisplay');
+    const attemptDisplay = document.getElementById('attemptDisplay');
+    const resultDisplay = document.getElementById('resultDisplay');
+    let balls = [];
+    
+    function renderBalls() {
+      numberDisplay.innerHTML = '';
+      balls = [];
+      for (let i = min; i <= max; i++) {
+        const ball = document.createElement('div');
+        ball.className = 'number-ball';
+        ball.textContent = i;
+        balls.push(ball);
+        numberDisplay.appendChild(ball);
+      }
+    }
+    renderBalls();
+    
+    function updateBallColors() {
+      balls.forEach((ball, idx) => {
+        ball.className = 'number-ball'; // Reset
+        let n = idx + 1;
+        if (ballStatuses[n]) {
+          ball.classList.add(ballStatuses[n]); // Apply status
+        }
+      });
+    }
+    
+    function endGame(message) {
+      resultDisplay.innerHTML = message;
+      gameOver = true;
+      guessSlider.disabled = true;
+    }
+    
+    function handleGuess() {
+      if (gameOver) return;
+      const guess = parseInt(guessSlider.value, 10);
+      attempts++;
+    
+      let status = '';
+      if (guess < correctNumber) {
+        status = 'yellow';
+      } else if (guess > correctNumber) {
+        status = 'red';
+      } else {
+        status = 'green';
+      }
+      ballStatuses[guess] = status;
+      updateBallColors();
+    
+      attemptDisplay.innerText = `Attempt No. ${attempts}`;
+    
+      if (status === 'green') {
+        endGame(`🎉 You Win! Correct number guessed in ${attempts} attempts!`);
+      } else if (attempts >= MAX_ATTEMPTS) {
+        endGame(`💀 Game Over! Correct number was ${correctNumber}.`);
+      }
+    }
+    
+    // Highlight current selection with border as slider moves
+    guessSlider.addEventListener('input', () => {
+      updateBallColors();
+      if (!gameOver) {
+        balls.forEach((ball, idx) => {
+          if (parseInt(guessSlider.value, 10) === idx + 1) {
+            ball.style.border = '3px solid #555';
+          } else {
+            ball.style.border = '';
+          }
+        });
+      }
+    });
+    
+    // Color the ball on slider release
+    guessSlider.addEventListener('change', () => {
+      balls.forEach(ball => ball.style.border = '');
+      handleGuess();
+    });
+    
+    guessSlider.value = min;
+    updateBallColors();
+  </script>
+</body>
+</html>

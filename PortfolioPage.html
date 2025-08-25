@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rushabh Gunjal - Portfolio</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome for Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      scroll-behavior: smooth;
+    }
+    section {
+      padding: 100px 0;
+    }
+    header {
+      position: fixed;
+      width: 100%;
+      z-index: 1000;
+    }
+    .navbar {
+      background: #333;
+    }
+    .navbar-nav .nav-link {
+      color: #fff !important;
+      font-weight: 500;
+    }
+    .navbar-nav .nav-link:hover {
+      color: #ff9800 !important;
+    }
+    .card {
+      transition: transform 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+    footer {
+      background: #333;
+      color: #fff;
+      padding: 20px 10px;
+    }
+    .profile-img {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid #fff;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      margin-bottom: 20px;
+    }
+    .icon {
+      font-size: 2rem;
+      color: #ff9800;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header / Navbar -->
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="#"><i class="fas fa-laptop-code me-2"></i>Rushabh Gunjal</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+                data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" 
+                aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="#about">About Me</a></li>
+            <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+            <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+            <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- About Section -->
+  <section id="about" class="bg-light">
+    <div class="container text-center">
+      
+      <h1 class="mb-3">About Me</h1>
+      <p class="lead">
+        Hello! I am <strong>Rushabh Gunjal</strong>, a passionate developer who loves building 
+        clean, responsive, and user-friendly applications. I enjoy exploring new technologies 
+        and constantly improving my skills.
+      </p>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills">
+    <div class="container">
+      <h2 class="text-center mb-5">My Skills</h2>
+      <div class="row g-4 justify-content-center">
+        <div class="col-md-2 col-6 text-center">
+          <i class="fab fa-html5 icon"></i>
+          <div class="card p-3">HTML5 & CSS3</div>
+        </div>
+        <div class="col-md-2 col-6 text-center">
+          <i class="fab fa-js icon"></i>
+          <div class="card p-3">JavaScript</div>
+        </div>
+        <div class="col-md-2 col-6 text-center">
+          <i class="fab fa-java icon"></i>
+          <div class="card p-3">Java</div>
+        </div>
+        <div class="col-md-2 col-6 text-center">
+          <i class="fas fa-code icon"></i>
+          <div class="card p-3">C#</div>
+        </div>
+        <div class="col-md-2 col-6 text-center">
+          <i class="fas fa-server icon"></i>
+          <div class="card p-3">ASP.NET</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="bg-light">
+    <div class="container">
+      <h2 class="text-center mb-5">My Projects</h2>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card h-100">
+            <img src="/assets/image.png" class="card-img-top" alt="Blockchain Project">
+            <div class="card-body">
+              <h5 class="card-title"><i class="fas fa-link me-2"></i>Supply Chain Management (Blockchain)</h5>
+              <p class="card-text">Developed a blockchain-based system to enhance transparency and security in supply chain tracking.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100">
+            <img src="assets/vacuum.jpg" class="card-img-top" alt="Vacuum Cleaner">
+            <div class="card-body">
+              <h5 class="card-title"><i class="fas fa-robot me-2"></i>Smart Vacuum Cleaner</h5>
+              <p class="card-text">Built an Arduino-powered smart vacuum cleaner to automate home cleaning tasks.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100">
+            <img src="/assets/contacts.jpg" class="card-img-top" alt="Contact App">
+            <div class="card-body">
+              <h5 class="card-title"><i class="fas fa-address-book me-2"></i>Contact Management App</h5>
+              <p class="card-text">Created a role-based contact management system with soft-delete functionality using .NET MVC.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <div class="container">
+      <h2 class="text-center mb-4">Contact Me</h2>
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="card p-4 shadow">
+            <p><i class="fas fa-envelope me-2 text-danger"></i><strong>Email:</strong> <a href="mailto:rushabh.gunjal@aurionpro.com">rushabh.gunjal@aurionpro.com</a></p>
+            <p><i class="fas fa-phone me-2 text-success"></i><strong>Phone:</strong> +91-1234567890</p>
+            <p><i class="fas fa-map-marker-alt me-2 text-primary"></i><strong>Location:</strong> India</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-center">
+    <p>&copy; 2025 Rushabh. All rights reserved.</p>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
